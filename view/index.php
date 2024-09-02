@@ -27,9 +27,10 @@ if (!$_SESSION['S_ID']) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
     <link id="pagestyle" href="../supplier/assets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.4/css/dataTables.dataTables.css" />
 </head>
 
-<body class="g-sidenav-show  bg-gray-200">
+<body class="g-sidenav-show  bg-gray-200 no-scroll">
     <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -42,17 +43,17 @@ if (!$_SESSION['S_ID']) {
         <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link text-white active bg-gradient-primary" href="../supplier/pages/dashboard.html">
+                    <a class="nav-link text-white active bg-gradient-primary" href="#" onclick="cargar_contenido('content', 'customerManagement/customerManagement.php');">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
                                     <path d="M620-163 450-333l56-56 114 114 226-226 56 56-282 282Zm220-397h-80v-200h-80v120H280v-120h-80v560h240v80H200q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h167q11-35 43-57.5t70-22.5q40 0 71.5 22.5T594-840h166q33 0 56.5 23.5T840-760v200ZM480-760q17 0 28.5-11.5T520-800q0-17-11.5-28.5T480-840q-17 0-28.5 11.5T440-800q0 17 11.5 28.5T480-760Z" />
                                 </svg></i>
                         </div>
-                        <span class="nav-link-text ms-1">Gesion de clientes</span>
+                        <span class="nav-link-text ms-1">Gestion de clientes</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white " href="../supplier/pages/tables.html">
+                    <a class="nav-link text-white " href="#" onclick="cargar_contenido('content', 'managmentClient/client.php')">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                             <i class="material-icons opacity-10"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
                                     <path d="M160-240v-480 172-12 320Zm0 80q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v131q-18-13-38-22.5T800-548v-92H447l-80-80H160v480h283q3 21 9.5 41t15.5 39H160Zm400 0v-22q0-45 44-71.5T720-280q72 0 116 26.5t44 71.5v22H560Zm160-160q-33 0-56.5-23.5T640-400q0-33 23.5-56.5T720-480q33 0 56.5 23.5T800-400q0 33-23.5 56.5T720-320Z" />
@@ -93,9 +94,13 @@ if (!$_SESSION['S_ID']) {
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky" id="navbarBlur" data-scroll="true" navbar-scroll="true">
             <div class="container-fluid py-1 px-3">
-                <nav aria-label="breadcrumb">
-                    <img src="../supplier/assets/img/logo2.png" width="30%" alt="">
+                <nav aria-label="breadcrumb" class="center">
+                    <img class="d-none d-md-block" src="../supplier/assets/img/logo2.png" width="30%" alt="">
                 </nav>
+                <nav aria-label="breadcrumb" class="d-flex justify-content-center" style="margin-top: 5%;">
+                    <img class="d-block d-sm-none" src="../supplier/assets/img/logo2.png" width="40%">
+                </nav>
+
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                     </div>
@@ -192,40 +197,89 @@ if (!$_SESSION['S_ID']) {
                             </ul>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a href="../supplier/pages/sign-in.html" class="nav-link text-body font-weight-bold px-0">
-                                <i class="fa fa-user me-sm-1"></i>
-                                <span class="d-sm-inline d-none"><a href="../crontroller/closSession/closSession.php">Cerrar Sesión</a></span>
-                            </a>
+                            <span class="d-sm-inline d-none d-md-block">
+                                <a href="../crontroller/closSession/closSession.php">Cerrar Sesión</a>
+                            </span>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- End Navbar -->
-        <div class="container-fluid py-4">
+        <div id="content" class="container-fluid py-4">
 
 
-            <footer class="footer position-fixed bottom-0 py-2 w-100">
-                <div class="container">
-                    <div class="row align-items-center justify-content-lg-between">
-                        <div class="col-12 col-md-6 my-auto">
-                            <div class="copyright text-center text-sm text-white text-lg-start">
-                                <a href="#" class="bg-gradient-primary text-gradient font-weight-bold">©</a>
-                                <a class="bg-gradient-primary text-gradient font-weight-bold">
-                                    <script>
-                                        document.write(new Date().getFullYear())
-                                    </script>,
-                                </a>
-                                <a href="#" class="bg-gradient-primary text-gradient font-weight-bold">Realizado por Development one click</a>
-                            </div>
+        </div>
+        <footer class="footer position-fixed bottom-0 py-2 w-100">
+            <div class="container">
+                <div class="row align-items-center justify-content-lg-between">
+                    <div class="col-12 col-md-6 my-auto">
+                        <div class="copyright text-center text-sm text-white text-lg-start">
+                            <a href="#" class="bg-gradient-primary text-gradient font-weight-bold">©</a>
+                            <a class="bg-gradient-primary text-gradient font-weight-bold">
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script>,
+                            </a>
+                            <a href="#" class="bg-gradient-primary text-gradient font-weight-bold">Realizado por Development one click</a>
                         </div>
                     </div>
                 </div>
-            </footer>
-        </div>
+            </div>
+        </footer>
     </main>
 
+    <!--   REQUIRE SCRIPTS   -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            cargar_contenido('content', 'customerManagement/customerManagement.php');
+        })
+
+        function cargar_contenido(id, vista) {
+            const elemento = document.getElementById(id);
+
+            if (!elemento) {
+                console.log(`Elemento con id "${id}" no encontrado`);
+                return;
+            }
+
+            fetch(vista)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Estado: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Crear un contenedor temporal para analizar el contenido
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = data;
+
+                    // Insertar el contenido HTML en el elemento
+                    elemento.innerHTML = tempDiv.innerHTML;
+
+                    // Ejecutar los scripts
+                    const scripts = tempDiv.querySelectorAll('script');
+                    scripts.forEach(script => {
+                        const newScript = document.createElement('script');
+                        if (script.src) {
+                            // Si el script tiene un src, copia el atributo src
+                            newScript.src = script.src;
+                        } else {
+                            // Si el script no tiene src, copia el contenido
+                            newScript.textContent = script.textContent;
+                        }
+                        document.body.appendChild(newScript).parentNode.removeChild(newScript);
+                    });
+                })
+                .catch(error => {
+                    console.error(`Error al cargar el contenido: ${error}`);
+                });
+        }
+    </script>
     <!--   Core JS Files   -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="../supplier/assets/js/jquery/jquery.min.js"></script>
     <script src="../supplier/assets/js/core/popper.min.js"></script>
     <script src="../supplier/assets/js/core/bootstrap.min.js"></script>
     <script src="../supplier/assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -233,6 +287,9 @@ if (!$_SESSION['S_ID']) {
     <script src="../supplier/assets/js/plugins/chartjs.min.js"></script>
     <script src="../supplier/assets/js/material-dashboard.min.js?v=3.1.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/dt-2.1.4/datatables.min.js"></script>
+    <script src="../js/customerManagement/managment.js"></script>
+    <script src="../js/managmentClient/client.js"></script>
 
 </body>
 

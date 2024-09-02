@@ -14,7 +14,7 @@ class LoginController
         if (count($consulta) > 0) {
 
             session_start();
-
+            
             $_SESSION['S_ID'] = $consulta[0][0];
             $_SESSION['S_US'] = $consulta[0][1];
             $_SESSION['S_RO'] = $consulta[0][2];

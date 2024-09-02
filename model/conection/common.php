@@ -6,7 +6,6 @@ class conectionDB
 {
 
     private $pdo;
-
     public function conectionDb()
     {
         try {
@@ -17,7 +16,7 @@ class conectionDB
         }
 
         try {
-            $dsn = 'mysql:host=' . DeCrypt($config['store']) . '; dbname=' . DeCrypt($config['location']);
+            $dsn = 'mysql:host=' . DeCrypt($config['store']) . ';port=31749; dbname=' . DeCrypt($config['location']);
             $username = DeCrypt($config['arg1']);
             $password = DeCrypt($config['arg2']);
             $options = [
