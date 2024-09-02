@@ -61,7 +61,7 @@ if (!$_SESSION['S_ID']) {
                         </div>
                         <span class="nav-link-text ms-1">Clientes gestionados</span>
                     </a>
-                </li>
+                </li><!---
                 <li class="nav-item">
                     <a class="nav-link text-white " href="../supplier/pages/billing.html">
                         <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -82,6 +82,7 @@ if (!$_SESSION['S_ID']) {
                         <span class="nav-link-text ms-1">Estado de gestion</span>
                     </a>
                 </li>
+                ->
             </ul>
         </div>
         <div class="sidenav-footer position-absolute w-100 bottom-0 ">
