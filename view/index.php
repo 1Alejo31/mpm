@@ -82,7 +82,7 @@ if (!$_SESSION['S_ID']) {
                         <span class="nav-link-text ms-1">Estado de gestion</span>
                     </a>
                 </li>
-                ->
+                -->
             </ul>
         </div>
         <div class="sidenav-footer position-absolute w-100 bottom-0 ">
